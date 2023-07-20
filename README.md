@@ -18,4 +18,4 @@ This error is fed to the P controller which calculates the input to the system (
 
 The Tuning of K_p is done manually for desired performance.
 
-P controller is implemented for the 
+P controller is implemented for Simplicity and the performance is decent.
