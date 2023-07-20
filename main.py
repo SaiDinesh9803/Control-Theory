@@ -38,7 +38,7 @@ def blit_rot_center(surf, image, topleft, angle):
 
 # initialising game parameters
 
-theta = 0       # the variable stores the angle of the plate with the
+     # the variable stores the angle of the plate with the
                 # horizontal and measured positive counterclockwise.
 
 phi = 0         # the variable stores the angle of rotation
@@ -46,11 +46,11 @@ phi = 0         # the variable stores the angle of rotation
 
 x = 0           # the variable stores the distance of
                 # the center of the ball form the pivot.
-
+sp_x = np.zeros(1001)
 
 # Game loop
 while run:
-
+    i = 0
     # checking for mouse input
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -58,19 +58,24 @@ while run:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 X, Y = event.pos  # gets the x and y coordinates of the mouse left click
+                sp_x[i] = X - 400
         elif event.type == pygame.MOUSEMOTION:
             if event.buttons[0] == 1:
                 X, Y = event.pos  # gets the x and y coordinates of the mouse left click and moving.
+                sp_x[i] = X - 400
 
     # This is your major task. Write a function which takes in
     # any number of parameters you like and output the new system
     # variables and any other parameter you would like to track.
-
-    dx = c.solve()
+    theta = c.PIDLoop(x , sp_x[i])  
+    dx = c.solve(theta)
+    
 
     # make sure the ball rotates
-    dphi = dx / r
+    dphi = dx[-1][0] / r
     phi += dphi
+    
+    x += dx[-1][0]
 
     # setting the background colour of the screen
     screen.fill((235, 62, 74))
@@ -85,3 +90,5 @@ while run:
     screen.blit(pivot, (centerX - 32, centerY - 32 + plateT))
 
     pygame.display.update()
+    
+    i += 1
