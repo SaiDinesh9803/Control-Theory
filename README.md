@@ -2,7 +2,7 @@ Our system is defined by the equation:
 
 $$\ddot{x}=-\frac{5g}{7}\theta$$
 
-The input to the system is $$\theta$$ and the output from the system is considered as the distance of the ball from the centre of the plate axis of rotation.
+The input to the system is theta and the output from the system is considered as the distance of the ball from the centre of the plate axis of rotation.
 
 The position is obtained by using odeint function in SciPy library with initial position and velocity of the ball considerd as [0, 0].
 
@@ -14,7 +14,7 @@ Note: Only X coordinates of the mouse click is considered for setpoint calculati
 
 The error is considered as the difference between the current position (x coordinate) and the set point.
 
-This error is fed to the P controller which calculates the input to the system ($$\theta$$)
+This error is fed to the P controller which calculates the input to the system theta
 
 The Tuning of K_p is done manually for desired performance.
 
