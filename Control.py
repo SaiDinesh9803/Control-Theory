@@ -25,16 +25,14 @@ def solve(theta):
     return dx
 
 def PIDLoop(x , sp_x):
-    k_p = 0.5
+    k_p = 1
     # k_i = 1
     # k_d = 0.2
     
         
     e = x - sp_x
     
-    act = k_p * e
-    
-    theta = act
+    theta = k_p * e
         
     return theta
         
